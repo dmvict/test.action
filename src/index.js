@@ -2,20 +2,17 @@ const core = require( '@actions/core' );
 
 try
 {
-  const status = core.getInput( 'status' );
-  if( status !== 'success' )
-  throw Error( 'Unexpected value of job status' );
+  const matrix = core.getInput( 'matrix' );
+  const matrixParsed = JSON.parse( matrix );
+  const matrixKeys = Object.keys( matrixParsed );
+  if( matrixKeys.length !== 1 && matrixKeys[ 0 ] !== 'os' )
+  throw Error( 'Unexpected value of matrix context' );
 
-  const container_network = core.getInput( 'container_network' );
-  if( container_network.length === 0 )
-  throw Error( 'Unexpected container network' );
-
-  const services_postgres_network = core.getInput( 'services_postgres_network' );
-  if( services_postgres_network.length === 0 )
-  throw Error( 'Unexpected sevice `postgres` network' );
-
-  if( container_network !== services_postgres_network )
-  throw Error( 'Container network and sevice `postgres` network should be equal.' );
+  const matrix_os = core.getInput( 'matrix_os' );
+  if( matrixParsed.os !== matrix_os )
+  throw Error( 'Matrix context and matrix field `os` has different content' );
+  if( matrix_os !== 'ubuntu-latest' )
+  throw Error( 'Expected value `ubuntu-latest` in `matrix.os`' );
 }
 catch( error )
 {

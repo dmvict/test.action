@@ -2,15 +2,12 @@ name: 'test.action'
 author : dmvict <dm.vict.kr@gmail.com>
 description: 'An action for testing purpose, no real usage expected.'
 inputs:
-  status:
-    description: 'Job status'
-    default: ${{ job.status }}
-  container_network:
-    description: 'Job container network'
-    default: ${{ job.container.network }}
-  services_postgres_network:
-    description: 'Job service network'
-    default: ${{ job.services.postgres.network }}
+  matrix:
+    description: 'Matrix context'
+    default: ${{ toJSON( matrix ) }}
+  matrix_os:
+    description: 'Matrix OS'
+    default: ${{ matrix.os }}
 runs:
   using: 'node12'
   main: 'src/index.js'
