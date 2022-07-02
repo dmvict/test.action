@@ -10,10 +10,10 @@ runs:
   using: "composite"
   steps:
     - name: pre
-      if: ${{ inputs.pre == 'true' }}
+      if: ${{ inputs.pre == true }}
       uses: dmvict/test.action@pre_
     - name: main
-      if: ${{ inputs.pre == 'false' }}
+      if: ${{ inputs.pre == false }}
       uses: dmvict/test.action@main
 
 
