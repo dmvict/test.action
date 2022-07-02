@@ -11,9 +11,10 @@ runs:
   steps:
     - name: pre
       if: ${{ inputs.pre == 'pre' }}
-      uses: dmvict/test.action@pre_
-    # - name: main
-    #   if: ${{ inputs.pre != 'pre' }}
-    #   uses: dmvict/test.action@main
+      run: node pre/pre.js
+      shell: bash
+    - name: pre
+      run: node pre/main.js
+      shell: bash
 
 
