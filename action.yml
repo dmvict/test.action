@@ -5,15 +5,15 @@ description: 'An action for testing purpose, no real usage expected.'
 inputs:
   pre:
     description: 'Job status'
-    default: true
+    default: 'pre'
 runs:
   using: "composite"
   steps:
     - name: pre
-      if: ${{ inputs.pre == true }}
+      if: ${{ inputs.pre == 'pre' }}
       uses: dmvict/test.action@pre_
     - name: main
-      if: ${{ inputs.pre == false }}
+      if: ${{ inputs.pre != 'pre' }}
       uses: dmvict/test.action@main
 
 
