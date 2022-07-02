@@ -9,17 +9,11 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - uses : actions/checkout@v2
-      with:
-        repository: dmvict/test.action
-        ref: exp
-    - run : ls -al
-      shell: bash
     - name: pre
       if: ${{ inputs.pre == 'true' }}
-      uses: ./pre
+      uses: dmvict/test.action@pre_
     - name: main
       if: ${{ inputs.pre == 'false' }}
-      uses: ./pre
+      uses: dmvict/test.action@main
 
 
