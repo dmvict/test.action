@@ -9,6 +9,10 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - uses : actions/checkout@v2
+      with:
+        repository: dmvict/test.action
+        ref: exp
     - name: pre
       if: ${{ inputs.pre == 'pre' }}
       run: node pre/pre.js
