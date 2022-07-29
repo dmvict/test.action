@@ -10,7 +10,7 @@ inputs:
     description: 'Job status'
     default: 'post'
 runs:
-  using: "node"
+  using: "composite"
   steps:
     - name: log
       run: echo "${{ inputs }}"
