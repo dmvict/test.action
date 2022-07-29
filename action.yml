@@ -9,6 +9,9 @@ inputs:
   post:
     description: 'Job status'
     default: 'post'
+  inputs:
+    description: 'Job status'
+    default: ${{ toJSON( inputs ) }}
 runs:
   using: "composite"
   steps:
