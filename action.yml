@@ -13,7 +13,7 @@ runs:
   using: "node"
   steps:
     - name: log
-      if: echo "${{ inputs }}"
+      run: echo "${{ inputs }}"
       shell: bash
 
 
