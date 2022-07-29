@@ -6,19 +6,14 @@ inputs:
   pre:
     description: 'Job status'
     default: 'pre'
+  post:
+    description: 'Job status'
+    default: 'post'
 runs:
-  using: "composite"
+  using: "node"
   steps:
-    - uses : actions/checkout@v2
-      with:
-        repository: dmvict/test.action
-        ref: exp
-    - name: pre
-      if: ${{ inputs.pre == 'pre' }}
-      run: node pre/pre.js
-      shell: bash
-    - name: pre
-      run: node pre/main.js
+    - name: log
+      if: echo "${{ inputs }}"
       shell: bash
 
 
